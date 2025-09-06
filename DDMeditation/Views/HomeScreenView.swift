@@ -9,6 +9,11 @@ import SwiftUI
 
 struct HomeScreenView: View {
     let homeScreen = "Home Screen"
+    let chips = [
+        "Sweet sleep",
+        "Insomnia",
+        "Depression"
+    ]
     
     var body: some View {
         ZStack {
@@ -17,9 +22,39 @@ struct HomeScreenView: View {
             VStack {
                 GreetingsView(name: "Ron")
                 
+                ChipsView(chips: chips)
+                
                 Spacer()
             }
         }
+    }
+}
+
+struct ChipsView: View {
+    let chips: [String]
+    @State private var selectedChipIndex = 0
+    
+    var body: some View {
+        HStack {
+            ForEach(0 ..< chips.count, id: \.self) { i in
+                Text(chips[i])
+                    .fixedSize(horizontal: false, vertical: true)
+                    .multilineTextAlignment(.center)
+                    .padding()
+                    .background {
+                        i == selectedChipIndex ? buttonBlue : darkerButtonBlue
+                    }
+                    .clipShape(.rect(cornerRadius: 10))
+                    .foregroundStyle(textWhite)
+                    .font(.footnote)
+                    .onTapGesture {
+                        selectedChipIndex = i
+                    }
+            }
+            
+            Spacer()
+        }
+        .padding()
     }
 }
 
