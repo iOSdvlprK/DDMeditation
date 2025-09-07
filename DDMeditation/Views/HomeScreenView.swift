@@ -1,5 +1,5 @@
 //
-//  HomeScreenView.swift
+//  HomeScreenView.swift`
 //  DDMeditation
 //
 //  Created by joe on 9/3/25.
@@ -24,9 +24,50 @@ struct HomeScreenView: View {
                 
                 ChipsView(chips: chips)
                 
+                CurrentMeditationView()
+                
+                AnotherView()
+                
                 Spacer()
             }
         }
+    }
+}
+
+struct CurrentMeditationView: View {
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading, spacing: 5) {
+                Text("Daily Thought")
+                    .foregroundStyle(textWhite)
+                    .fontWeight(.semibold)
+                Text("Meditation 3-10 min")
+                    .foregroundStyle(textWhite)
+                    .font(.caption)
+            }
+            .padding()
+            
+            Spacer()
+            
+            Image(systemName: "play.circle")
+                .resizable()
+                .frame(width: 50, height: 50)
+                .foregroundStyle(textWhite)
+                .background(buttonBlue)
+                .clipShape(Circle())
+                .padding()
+        }
+        .background(lightRed)
+        .clipShape(.rect(cornerRadius: 10))
+        .padding()
+    }
+}
+
+struct AnotherView: View {
+    var body: some View {
+        Text("AnotherView")
+            .foregroundStyle(textWhite)
+            .fontWeight(.semibold)
     }
 }
 
