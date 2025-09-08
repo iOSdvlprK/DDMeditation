@@ -26,7 +26,7 @@ struct HomeScreenView: View {
                 
                 CurrentMeditationView()
                 
-                AnotherView()
+                FeatureView()
                 
                 Spacer()
             }
@@ -63,11 +63,47 @@ struct CurrentMeditationView: View {
     }
 }
 
-struct AnotherView: View {
+struct FeatureView: View {
+    let width = UIScreen.width
+    var halfWidth: CGFloat { width / 2 }
+    var boxDim: CGFloat { 0.9 * halfWidth }
+    
+    let columns: [GridItem] = Array(repeating: GridItem(.fixed(190), spacing: 0), count: 2)
+    let colors: [Color] = [
+        blueViolet1, lightGreen1,orangeYellow1, orangeYellow3
+    ]
+    let titles: [String] = [
+        "Sleep meditation", "Tips for sleeping", "Night island", "Calming sounds"
+    ]
+    
     var body: some View {
-        Text("AnotherView")
-            .foregroundStyle(textWhite)
-            .fontWeight(.semibold)
+        VStack(alignment: .leading) {
+            Text("Feature")
+                .foregroundStyle(textWhite)
+                .font(.footnote)
+                .fontWeight(.semibold)
+                .padding()
+            
+            LazyVGrid(columns: columns, spacing: 10) {
+                ForEach(0 ..< colors.count, id: \.self) { i in
+                    ZStack {
+                        Rectangle()
+                            .fill(colors[i])
+                            .frame(width: boxDim, height: boxDim)
+                            .clipShape(.rect(cornerRadius: 10))
+                        
+                        VStack(alignment: .leading) {
+                            Text(titles[i])
+                                .foregroundStyle(textWhite)
+                                .font(.footnote)
+                                .padding()
+                            
+                            Spacer()
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
