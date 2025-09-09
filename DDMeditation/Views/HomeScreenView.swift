@@ -66,9 +66,9 @@ struct CurrentMeditationView: View {
 struct FeatureView: View {
     let width = UIScreen.width
     var halfWidth: CGFloat { width / 2 }
-    var boxDim: CGFloat { 0.9 * halfWidth }
+    var boxDim: CGFloat { 0.8 * halfWidth }
     
-    let columns: [GridItem] = Array(repeating: GridItem(.fixed(190), spacing: 0), count: 2)
+    let columns: [GridItem] = Array(repeating: GridItem(.fixed(UIScreen.width / 2), spacing: 0), count: 2)
     let colors: [Color] = [
         blueViolet1, lightGreen1,orangeYellow1, orangeYellow3
     ]
@@ -94,12 +94,25 @@ struct FeatureView: View {
                         
                         VStack(alignment: .leading) {
                             Text(titles[i])
+                                .fixedSize(horizontal: false, vertical: true)
+                                .multilineTextAlignment(.center)
                                 .foregroundStyle(textWhite)
-                                .font(.footnote)
+                                .font(.body)
                                 .padding()
                             
                             Spacer()
+                            
+                            HStack {
+                                Text("Start")
+                                    .foregroundStyle(textWhite)
+                                    .font(.body)
+                                    .padding(5)
+                                    .background(buttonBlue)
+                                    .clipShape(.rect(cornerRadius: 5))
+                            }
+                            .padding()
                         }
+                        .frame(width: boxDim, height: boxDim, alignment: .leading)
                     }
                 }
             }
