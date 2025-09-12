@@ -10,30 +10,25 @@ import SwiftUI
 struct MainTabView: View {
     var body: some View {
         TabView {
-            HomeScreenView()
-                .tabItem {
-                    Label("Home", systemImage: "house")
-                }
+            Tab("Home", systemImage: "house") {
+                HomeScreenView()
+            }
             
-            MeditateScreenView()
-                .tabItem {
-                    Label("Meditate", systemImage: "drop")
-                }
+            Tab("Meditate", systemImage: "drop") {
+                MeditateScreenView()
+            }
             
-            SleepScreenView()
-                .tabItem {
-                    Label("Sleep", systemImage: "moon")
-                }
+            Tab("Sleep", systemImage: "moon") {
+                SleepScreenView()
+            }
             
-            MusicView()
-                .tabItem {
-                    Label("Music", systemImage: "music.note")
-                }
+            Tab("Music", systemImage: "music.note") {
+                MusicView()
+            }
             
-            ProfileView()
-                .tabItem {
-                    Label("Profile", systemImage: "person")
-                }
+            Tab("Profile", systemImage: "person") {
+                ProfileView()
+            }
         }
     }
 }
